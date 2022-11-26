@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Delivery : MonoBehaviour
 {
-    private int noOfPackagesHeld;
+    // private int noOfPackagesHeld;
+    bool hasPackage = false;
     void OnCollisionEnter2D(Collision2D other) {
             Debug.Log("OOF its Gone wRonG");
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Package"){
-            noOfPackagesHeld +=1;
+            // noOfPackagesHeld +=1;
             Debug.Log("Package picked");
+            hasPackage = true;
 
         }
-        if(other.tag == "Customer" && noOfPackagesHeld > 0){
+        //&& noOfPackagesHeld > 0
+        if(other.tag == "Customer" && hasPackage){
             Debug.Log("Package Delievered");
-            noOfPackagesHeld -=1;
+            hasPackage = false;
+            // noOfPackagesHeld -=1;
         }
     }
     
