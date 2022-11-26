@@ -5,12 +5,18 @@ using UnityEngine;
 public class Driver : MonoBehaviour
 {   
     [SerializeField] float steerSpeed = 1f;
-    [SerializeField] float moveSpeed = 0.01f;
-    void Start()
-    {
+    [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float slowSpeed = 15f;
+    [SerializeField] float boostSpeed = 30f;
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Boosts"){
+           moveSpeed = boostSpeed;
+        }
+        if(other.tag == "Bumps"){
+            moveSpeed = slowSpeed;
+        }
     }
-
     void Update()
     {
         float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
